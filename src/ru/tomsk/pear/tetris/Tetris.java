@@ -10,11 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class Tetris extends Activity {
-	private final static int NEWGAME_ID = 1;
-	private final static int EXIT_ID = 2;
-	private final static int ABOUT_ID = 3;
-	private final static int CONTROLS_ID = 4;
+	public final static int NEWGAME_ID = 1;
+	public final static int EXIT_ID = 2;
+	public final static int ABOUT_ID = 3;
+	public final static int CONTROLS_ID = 4;
+	
 	private Game _game;
+	private Menu _menu;
 	
     /** Called when the activity is first created. */
     @Override
@@ -30,6 +32,7 @@ public class Tetris extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	populateMenu(menu);
+    	_menu = menu;
     	return (super.onCreateOptionsMenu(menu));
     }
         
@@ -89,6 +92,16 @@ public class Tetris extends Activity {
     			
     	}
     	return false;
+    }
+    
+    public Game getGame()
+    {
+        return _game;
+    }
+    
+    public Menu getMenu()
+    {
+        return _menu;
     }
     	
 		
