@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-//import android.view.View;
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
 	
@@ -25,9 +24,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 	/**
 	 * Главный рисовальный метод
 	 */
+        @Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		//if (tetris.isGameOver()) tetris.start();
 		drawInterface(canvas);
 		paintTetris(canvas, _windowLeft, _windowTop, _offset);//, paint);
 	}	
@@ -48,7 +47,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 		for (int i = 0; i < tetCanv.length; i++) {
 			for (int j = 0; j < tetCanv[i].length; j++) {
 				if (tetCanv[i][j] == 1) {
-					//canvas.drawCircle(left + offset*j + offset/2, top + offset*i + offset/2, radius, paint);
 					canvas.drawRect(left + offset*j, top + offset*i, left + offset*j + offset, top + offset*i + offset, paint);
 				}
 			}
@@ -107,8 +105,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 			paint.setColor(Color.WHITE);
 			verticalOffset += _offset*4;
 			canvas.drawText("Best result:", panelLeft, verticalOffset, paint);
-			//verticalOffset += _offset*1.2f;
-			//canvas.drawText("результат:", panelLeft, verticalOffset, paint); 
 			paint.setColor(Color.GREEN);
 			verticalOffset += _offset*1.5f;
 			canvas.drawText(Integer.toString(tetris.getMaxScores()), panelLeft + _offsetBorderX, verticalOffset, paint);
@@ -186,41 +182,42 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 	 * Короткое движение в стороны - перемещение фигуры
 	 * Тап - вращение фигуры
 	 */
+        @Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int fallDownRange = 90;
 		int moveAsideRange = 30;
 		int rotateRange = 20;
-       synchronized (_thread.getSurfaceHolder()) {
+                synchronized (_thread.getSurfaceHolder()) {
     	   
 			switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
-                   	startX = event.getX();
-                   	startY = event.getY();
-                   	break;
+                                    startX = event.getX();
+                                    startY = event.getY();
+                                    break;
 				case MotionEvent.ACTION_UP:
-					float tmpX;
-					float tmpY;
-					postX = event.getX();
-					postY = event.getY();
-					tmpX = postX - startX;
-					tmpY = postY - startY;
-					if (Math.abs(tmpX) > moveAsideRange) {
-						if (tmpX < 0) tetris.moveShape(TetrisCanvas.LEFT);
-						if (tmpX > 0) tetris.moveShape(TetrisCanvas.RIGHT);
-	                   	startX = 0;
-	                   	postX = 0;
-					} else if (tmpY > fallDownRange) {
-						//быстрый спуск фигуры
-						tetris.quickFall();
-					} else if (Math.abs(tmpX) < rotateRange && Math.abs(tmpY) < rotateRange) {
-						tetris.rotateShape();
-					}
-                   	break;                   	
+                                    float tmpX;
+                                    float tmpY;
+                                    postX = event.getX();
+                                    postY = event.getY();
+                                    tmpX = postX - startX;
+                                    tmpY = postY - startY;
+                                    if (Math.abs(tmpX) > moveAsideRange) {
+                                            if (tmpX < 0) tetris.moveShape(TetrisCanvas.LEFT);
+                                            if (tmpX > 0) tetris.moveShape(TetrisCanvas.RIGHT);
+                                            startX = 0;
+                                            postX = 0;
+                                    } else if (tmpY > fallDownRange) {
+                                            //быстрый спуск фигуры
+                                            tetris.quickFall();
+                                    } else if (Math.abs(tmpX) < rotateRange && Math.abs(tmpY) < rotateRange) {
+                                            tetris.rotateShape();
+                                    }
+                                    break;                   	
 			}            
-       }
-       return true;
-    }
-	
+                }
+                return true;
+        }
+
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 	}
 	

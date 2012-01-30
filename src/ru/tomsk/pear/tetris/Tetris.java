@@ -14,7 +14,7 @@ public class Tetris extends Activity {
 	private final static int EXIT_ID = 2;
 	private final static int ABOUT_ID = 3;
 	private final static int CONTROLS_ID = 4;
-	Game _game;
+	private Game _game;
 	
     /** Called when the activity is first created. */
     @Override
