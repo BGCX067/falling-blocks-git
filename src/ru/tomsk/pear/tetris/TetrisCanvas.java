@@ -4,6 +4,19 @@ import java.util.ArrayList;
 
 public class TetrisCanvas {
 	
+	public static final byte CANVAS_H = TetrisShape.CANVAS_H;
+	public static final byte CANVAS_W = TetrisShape.CANVAS_W;
+	public static final byte LEFT = -1;
+	public static final byte RIGHT = 1;
+	
+	protected byte[][] canvas;
+	protected TetrisShape shape;
+	
+	private int scores = 0;
+	private int maxScores = 0;
+	private int incScoresStep = 100;
+	
+
 	public TetrisCanvas() {
 		canvas = new byte[CANVAS_H][CANVAS_W];
 		shape = new TetrisShape();
@@ -14,7 +27,7 @@ public class TetrisCanvas {
 		eraseCanvas();
 		shape.setNewShape();
 		if (scores > maxScores) {
-			maxScores = scores; 
+			maxScores = scores;
 		}
 		scores = 0;
 		//fillCanvas();
@@ -23,7 +36,7 @@ public class TetrisCanvas {
 	/**
 	 * Полностью очищает главную канву
 	*/
-	private void eraseCanvas() {
+	public void eraseCanvas() {
 		for (int i = 0; i < CANVAS_H; i++) {
 			for (int j = 0; j < CANVAS_W; j++) {
 				canvas[i][j] = 0;
@@ -215,18 +228,7 @@ public class TetrisCanvas {
 	
 	public byte[][] getCanvas() {
 		return cloneMatrix(canvas);		
-	}	
+	}
 	
-	//--------------------
-	public static final byte CANVAS_H = TetrisShape.CANVAS_H;
-	public static final byte CANVAS_W = TetrisShape.CANVAS_W;
-	public static final byte LEFT = -1;
-	public static final byte RIGHT = 1;
-	private byte[][] canvas;
-	private int scores = 0;
-	private int maxScores = 0;
-	private int incScoresStep = 100;
-	private TetrisShape shape;
 
-	
 }

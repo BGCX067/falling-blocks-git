@@ -20,6 +20,16 @@ public class TetrisThread extends Thread {
 		_paused = paused;
 	}
 	
+	public boolean isPaused()
+	{
+		return _paused;
+	}
+	
+	public boolean isRun()
+	{
+		return _run;
+	}
+	
 	public void run() {
 		Canvas c;
 		int ticks = 0;
@@ -71,6 +81,7 @@ public class TetrisThread extends Thread {
 	public SurfaceHolder getSurfaceHolder() {
         return _holder;
     }
+
 	
 	SurfaceHolder _holder;
 	Game _game;

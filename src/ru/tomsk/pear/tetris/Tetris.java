@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+//@TODO ?переделать меню: после закрытия диалога меню должно появляться обратно
+//@TODO ?переделать меню: после закрытия диалога меню должно появляться обратно
+//@TODO добавить вопрос при выборе новой игры
 public class Tetris extends Activity {
 	public final static int NEWGAME_ID = 1;
 	public final static int EXIT_ID = 2;

@@ -345,6 +345,18 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 		return false;
 	}
 	
+	public boolean isPaused()
+	{
+		return _thread.isPaused();
+	}
+	
+	public boolean isRun()
+	{
+		return _thread.isPaused();
+	}
+	
+	
+	
 	private float _windowHeight;
 	private float _windowWidth;
 	private float _windowTop;
